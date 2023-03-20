@@ -1,13 +1,11 @@
 
-public class MenuManager {
+public class PhoneNumberManager {
 
 	public static void main(String[] args) {
-		System.out.println("1. Add students");
-		System.out.println("2. Delete students");
-		System.out.println("3. Edit students");
-		System.out.println("4. View students");
-		System.out.println("5. Exit");
-
+		System.out.println("1. Add phone_number");
+		System.out.println("2. Delete phone_number");
+		System.out.println("3. Edit phone_number");
+		System.out.println("4. Exit");
 	}
 
 }
