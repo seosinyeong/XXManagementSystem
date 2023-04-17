@@ -45,7 +45,7 @@ public class Menumanagement {
 		String stocksItem=input.next();
 		System.out.println(stocksItem);
 		
-		System.out.print("stocksName:");
+		System.out.print("Stocks Name:");
 		String stocksName=input.next();
 		System.out.println(stocksName);
 		
