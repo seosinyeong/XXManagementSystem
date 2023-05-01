@@ -3,6 +3,8 @@ package martMangement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Stock.Stocks;
+
 public class StocksManager {
 	ArrayList<Stocks> stock=new ArrayList<Stocks>();
 	Scanner input;
@@ -11,16 +13,29 @@ public class StocksManager {
 	}
 
 	public void addStocks() {
-		Stocks stocks= new Stocks();
-		System.out.print("Stocks ID: ");
-		stocks.id=input.nextInt();
-		
-		System.out.print("Stocks Item: ");
-		stocks.item=input.next();
-		
-		System.out.print("Stocks Name: ");
-		stocks.name=input.next();
-		stock.add(stocks);
+		int kind=0;
+		Stocks stocks;
+		while(kind!=1&&kind!=2) {
+			System.out.print("1 for Convenience ");
+			System.out.print("\t2 for Mart ");
+			System.out.println("Select num for Student Kind between 1 and 2: ");
+			kind = input.nextInt();
+			if (kind == 1) {
+				stocks= new Stocks();
+				stocks.getUserInput(input);
+				stock.add(stocks);
+				break;
+			}
+			else if(kind == 2) {
+				stocks= new MartStock();						
+				stock.add(stocks);
+				stocks.getUserInput(input);
+				break;
+			}
+			else {
+				System.out.print("Select num for Student Kind between 1 and 2: ");
+			}
+		}
 
 	}
 	
@@ -29,7 +44,7 @@ public class StocksManager {
 		int stocksID =input.nextInt();
 		int index=-1;
 		for(int i=0;i<stock.size();i++) {
-			if (stock.get(i).id==stocksID) {
+			if (stock.get(i).getId()==stocksID) {
 				index=i;
 				break;
 			}
@@ -53,7 +68,7 @@ public class StocksManager {
 		for(int i=0;i<stock.size();i++) {	
 			Stocks stocks =stock.get(i);
 
-		if (stocks.id==stocksID) {
+		if (stocks.getId()==stocksID) {
 			int num =-1;
 			while(num!=5) {
 				System.out.println("***Stocks Management System Menu***");
@@ -66,15 +81,19 @@ public class StocksManager {
 				
 				if(num==1) {
 					System.out.println("Stock ID:");
-					stocks.id=input.nextInt();
+					int id=input.nextInt();
+					stocks.setId(id);
 				}
 				else if(num==2) {
 					System.out.println("Stock Item:");
-					stocks.item=input.next();				}
+					String item=input.next();	
+					stocks.setItem(item);
+				}
 				else if(num==3) {
 					System.out.println("Stock Name:");
-					stocks.name=input.next();				}
-				
+					String name=input.next();				
+					stocks.setName(name);
+					}
 				else {
 					break;
 				}//if
@@ -86,6 +105,9 @@ public class StocksManager {
 }
 	
 	public void viewStocks() {
+		System.out.print("Stocks ID: ");
+		int stockId =input.nextInt();
+		System.out.println("# of registered students:"+ stock.size());
 		for(int i=0;i<stock.size();i++) {		
 			stock.get(i).printInfo();
 		}

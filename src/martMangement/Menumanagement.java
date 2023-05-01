@@ -34,42 +34,6 @@ public class Menumanagement {
 			}
 		}
 	}
-	public static void addStocks() {
-		
-		Scanner input=new Scanner(System.in);
-		
-		System.out.print("Stocks ID: "); 
-		int stocksID=input.nextInt();
-		
-		System.out.print("Stocks Item: ");
-		String stocksItem=input.next();
-		System.out.println(stocksItem);
-		
-		System.out.print("Stocks Name:");
-		String stocksName=input.next();
-		System.out.println(stocksName);
-		
-	}
-	public  static void deleteStocks() {
-		
-		Scanner input =new Scanner(System.in);
-		System.out.print("Stocks ID: ");
-		int stocksID =input.nextInt();
-		
-	}
-	
-	public static void editStocks() {
-		Scanner input =new Scanner(System.in);
-		System.out.print("Stocks ID: ");
-		int stocksID= input.nextInt();
-		}
-	
-
-	public static void viewStocks() {
-		Scanner input=new Scanner(System.in);
-		System.out.print("Stocks ID: ");
-		int stocksID= input.nextInt();
-	}
 
 }
 
