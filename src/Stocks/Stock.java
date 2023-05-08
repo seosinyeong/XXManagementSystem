@@ -1,29 +1,41 @@
-package Stock;
+package Stocks;
 
 import java.util.Scanner;
 
-public class Stocks {
-	protected StockKind kind = StockKind.ConvenienceStore;
+public class Stock {
+	protected StockKind kind = StockKind.Cu;
 	protected int id;
 	protected String item;
 	protected String name;
 	
-	public Stocks() {
+	public Stock() {
+	}
+	
+	public Stock(StockKind kind) {
+		this.kind=kind;
 	}
 
 
-	public Stocks(int id, String item) {
+	public Stock(int id, String item) {
 		this.id= id;
 		this.item=item;
-	
+
 	}
 	
-	public Stocks(int id, String item, String name) {
+	public Stock(int id, String item, String name) {
 		this.id= id;
 		this.item=item;
 		this.name=name;
 	
 	}
+	
+	public Stock(StockKind kind,int id,String item,String name) {
+		this.kind=kind;
+		this.id=id;
+		this.item=item;
+		this.name=name;
+	}
+	
 	public StockKind getKind() {
 		return kind;
 	}
@@ -81,5 +93,6 @@ public class Stocks {
 		this.setName(name);
 
 	}
+
 }
 

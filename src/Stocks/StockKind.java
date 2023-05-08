@@ -1,7 +1,8 @@
-package Stock;
+package Stocks;
 
 public enum StockKind {
-	ConvenienceStore,
-	Mart,
-	DepartmentStore
+	Cu,
+	Seveneleven,
+	Gs25,
+	MiniStop;
 }
