@@ -2,10 +2,14 @@ package martMangement;
 
 import java.util.Scanner;
 
-import Stock.Stocks;
+import Stocks.StockKind;
+import Stocks.Stock;
 
-public class MartStock extends Stocks {
+public class Gs25 extends Stock {
 	
+	public Gs25(StockKind kind) {
+		super(kind);
+	}
 	public void getUserInput(Scanner input) {
 		System.out.print("Stocks ID: ");
 		int id=input.nextInt();
