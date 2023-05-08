@@ -5,7 +5,7 @@ public class Menumanagement {
 
 	public static void main(String[] args) {
 		Scanner input =new Scanner(System.in);
-		StocksManager stocksManager=new StocksManager(input);
+		StockManager stocksManager=new StockManager(input);
 	
 		int num =-1;
 		while(num!=5) {
