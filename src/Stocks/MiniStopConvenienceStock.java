@@ -1,11 +1,8 @@
-package martMangement;
+package Stocks;
 
 import java.util.Scanner;
 
-import Stocks.Stock;
-import Stocks.StockKind;
-
-public class MiniStopConvenienceStock extends Stock {
+public class MiniStopConvenienceStock extends Stock implements StockInput{
 	
 	public MiniStopConvenienceStock(StockKind kind) {
 		super(kind);
