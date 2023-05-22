@@ -2,7 +2,9 @@ package Stocks;
 
 import java.util.Scanner;
 
-public abstract class Stock {
+import Exception.ItemFormatException;
+
+public abstract class Stock implements StockInput{
 	protected StockKind kind = StockKind.Cu;
 	protected int id;
 	protected String item;
@@ -61,7 +63,10 @@ public abstract class Stock {
 	}
 
 
-	public void setItem(String item) {
+	public void setItem(String item)throws ItemFormatException {
+		if(!item.contains("#")&&!item.equals("")) {
+			throw new ItemFormatException();
+		}
 		this.item = item;
 	}
 
@@ -77,7 +82,52 @@ public abstract class Stock {
 
 	public abstract void printInfo(); 
 	
+	public void setStockID(Scanner input) {//
+		System.out.println("Stock ID:");
+		int id=input.nextInt();
+		this.setId(id);
+	}
 	
+	public void setStockItem(Scanner input) {//
+		String item="";
+		while(!item.contains("#")) {
+			System.out.println("Stock Item:");
+			item=input.next();	
+			try{
+				this.setItem(item);
+			}
+			catch(ItemFormatException e) {
+				System.out.println("Incorrect Item Format. Put the item that contains #");
+			}
+		}
+		
+	}
+	
+	public void setStockName(Scanner input) {
+		System.out.println("Stock Name:");
+		String name=input.next();				
+		this.setName(name);
+	}
+	
+	public String getKindString() {
+		String skind ="none";
+		switch(this.kind) {
+		case Cu:
+			skind="Cu.";
+			break;
+		case Gs25:
+			skind="Gs.";
+			break;
+		case Seveneleven:
+			skind="Seven.";
+			break;
+		case MiniStop:
+			skind="Mini.";
+			break;
+		default:
+		}
+		return skind;
+	}
 
 }
 

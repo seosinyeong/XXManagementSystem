@@ -2,79 +2,53 @@ package Stocks;
 
 import java.util.Scanner;
 
-public class MiniStopConvenienceStock extends Stock implements StockInput{
+import Exception.ItemFormatException;
+
+public class MiniStopConvenienceStock extends CommonStock {
 	
-	public MiniStopConvenienceStock(StockKind kind) {
-		super(kind);
-	}
 	
 	protected int companyid;
 	protected String companyitem;
 	
+	public MiniStopConvenienceStock(StockKind kind) {
+		super(kind);
+	}
+
 	
 	public void getUserInput(Scanner input) {
-		System.out.print("Stocks ID: ");
-		int id=input.nextInt();
-		this.setId(id);
-
+		setStockID(input);
+		setStockItemwithYN(input);
+		setCompanyItemwithYN(input);
+		setStockName(input);
+	}
+		
+	public void setCompanyItemwithYN(Scanner input) {
 		char answer='x';
 		while(answer!='y'&& answer!='Y' && answer!='N' && answer!='n') {
-			System.out.print("Is there a name for the stock?(Y/N)");
+			System.out.print("Do you have a company's item? (Y/N)");
 			 answer=input.next().charAt(0);
-			if(answer =='y'|| answer=='Y') {
-				System.out.print("Stocks Name: ");
-				String name=input.next();
-				this.setName(name);
-				break;
+			try {
+				if(answer =='y'|| answer=='Y') {
+					setStockItem(input);
+					break;
+				}
+				else if(answer=='N'||answer=='n') {
+					this.setItem("");
+					break;
+				}
+				else {
+				}
 			}
-			else if(answer=='N'||answer=='n') {
-				this.setName("");
-				break;
-			}
-			else {
+			catch(ItemFormatException e) {
+				System.out.println("Incorrect Item Format. Put the item that contains #");
 			}
 		}
-		
-		answer='x';
-		while(answer!='y'&& answer!='Y' && answer!='N' && answer!='n') {
-			System.out.print("Is there a name for the stock?(Y/N)");
-			 answer=input.next().charAt(0);
-			if(answer =='y'|| answer=='Y') {
-				System.out.print("Stocks Name: ");
-				String name=input.next();
-				this.setName(name);
-				break;
-			}
-			else if(answer=='N'||answer=='n') {
-				this.setName("");
-				break;
-			}
-			else {
-			}
-		}
-		System.out.print("Stocks Name: ");
-		String name=input.next();
-		this.setName(name);
 	}
-		public void printInfo() {
-			String skind ="none";
-			switch(this.kind) {
-			case Cu:
-				skind="Cu.";
-				break;
-			case Gs25:
-				skind="Gs.";
-				break;
-			case Seveneleven:
-				skind="Seven.";
-				break;
-			case MiniStop:
-				skind="Mini.";
-				break;
-			default:
-			}
-			System.out.println("kind: "+skind+"company's id"+id+"company's item:"+item+"name:"+name);
 		
+	
+		public void printInfo() {
+			String skind =getKindString();
+			System.out.println("kind: "+skind+"company's id"+id+"company's item:"+item+"name:"+name);
 		
 }
 
