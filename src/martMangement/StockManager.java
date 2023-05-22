@@ -2,9 +2,10 @@ package martMangement;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 import Stocks.CuStock;
-import Stocks.Gs25;
+import Stocks.Gs25ConvenienceStock;
 import Stocks.MiniStopConvenienceStock;
 import Stocks.Stock;
 import Stocks.StockInput;
@@ -20,40 +21,56 @@ public class StockManager {
 	public void addStocks() {
 		int kind=0;
 		StockInput stockInput;
-		while(kind!=1&&kind!=2) {
-			System.out.print("1 for Cu ");
-			System.out.print("2 for Gs25 ");
-			System.out.print("3 for Ministop ");
-			System.out.print("Select num 1 , 2 or 3for Stock kind : ");
-			kind = input.nextInt();
-			if (kind == 1) {
-				stockInput= new CuStock(StockKind.Cu);
-				stocks.add(stockInput);
-				stockInput.getUserInput(input);
-				break;
+		while(kind<=1||kind>3) {
+			try {
+				System.out.print("1 for Cu ");
+				System.out.print("2 for Gs25 ");
+				System.out.print("3 for Ministop ");
+				System.out.print("Select num 1 , 2 or 3for Stock kind : ");
+				kind = input.nextInt();
+				if (kind == 1) {
+					stockInput= new CuStock(StockKind.Cu);
+					stocks.add(stockInput);
+					stockInput.getUserInput(input);
+					break;
+				}
+				else if(kind == 2) {
+					stockInput= new Gs25ConvenienceStock(StockKind.Gs25);						
+					stocks.add(stockInput);
+					stockInput.getUserInput(input);
+					break;
+				}
+				else if(kind == 3) {
+					stockInput= new MiniStopConvenienceStock(StockKind.MiniStop);						
+					stocks.add(stockInput);
+					stockInput.getUserInput(input);
+					break;
+				}
+				else {
+					System.out.print("Select num for Student Kind between 1 and 2: ");
+				}
 			}
-			else if(kind == 2) {
-				stockInput= new Gs25(StockKind.Gs25);						
-				stocks.add(stockInput);
-				stockInput.getUserInput(input);
-				break;
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 and 3!");
+				if(input.hasNext()) {
+					input.next();
+				}
+				kind=-1;
+				}
 			}
-			else if(kind == 3) {
-				stockInput= new MiniStopConvenienceStock(StockKind.MiniStop);						
-				stocks.add(stockInput);
-				stockInput.getUserInput(input);
-				break;
-			}
-			else {
-				System.out.print("Select num for Student Kind between 1 and 2: ");
-			}
-		}
-
 	}
+
 	
 	public void deleteStocks() {
 		System.out.print("Stocks ID: ");
 		int stocksID =input.nextInt();
+		int index=findIndex(stocksID);
+	
+		removefromStock(index,stocksID);
+	
+	}
+	
+	public int findIndex(int stocksID) {
 		int index=-1;
 		for(int i=0;i<stocks.size();i++) {
 			if (stocks.get(i).getId()==stocksID) {
@@ -61,16 +78,20 @@ public class StockManager {
 				break;
 			}
 		}
+		return index;
+	}
+	
+	public int removefromStock(int index,int stocksID) {
 		if(index>=0) {
 			stocks.remove(index);
 			System.out.println("the stock "+stocksID+" is deleted");
+			return 1;
 		}
 		
 		else {
 			System.out.println("the stock has not been registered");
-			return;
+			return -1;
 		}
-	
 	}
 	
 	public void editStocks() {
@@ -78,37 +99,27 @@ public class StockManager {
 		int stocksID =input.nextInt();
 		
 		for(int i=0;i<stocks.size();i++) {	
-			StockInput stockInput =stocks.get(i);
+			StockInput stock =stocks.get(i);
 
-		if (stockInput.getId()==stocksID) {
+		if (stock.getId()==stocksID) {
 			int num =-1;
 			while(num!=5) {
-				System.out.println("***Stocks Management System Menu***");
-				System.out.println("1. Edit Id: ");
-				System.out.println("2. Edit Item: ");
-				System.out.println("3. Edit name: ");
-				System.out.println("4. Exit ");
-				
+				showEditStock();
 				num=input.nextInt();
-				
-				if(num==1) {
-					System.out.println("Stock ID:");
-					int id=input.nextInt();
-					stockInput.setId(id);
-				}
-				else if(num==2) {
-					System.out.println("Stock Item:");
-					String item=input.next();	
-					stockInput.setItem(item);
-				}
-				else if(num==3) {
-					System.out.println("Stock Name:");
-					String name=input.next();				
-					stockInput.setName(name);
-					}
-				else {
+				switch(num) {
+				case 1:
+					stock.setStockID(input);
 					break;
-				}//if
+				case 2:					 
+					stock.setStockItem(input);
+					break;
+				case 3:
+					stock.setStockName(input);
+					break;
+				default:
+					continue;
+				}
+				
 			}//while
 			break;
 		}//if
@@ -117,11 +128,18 @@ public class StockManager {
 }
 	
 	public void viewStocks() {
-		System.out.print("Stocks ID: ");
-		int stockId =input.nextInt();
 		System.out.println("# of registered students:"+ stocks.size());
 		for(int i=0;i<stocks.size();i++) {		
 			stocks.get(i).printInfo();
 		}
 }
+	
+	
+	public void showEditStock() {
+		System.out.println("***Stocks Management System Menu***");
+		System.out.println("1. Edit Id: ");
+		System.out.println("2. Edit Item: ");
+		System.out.println("3. Edit name: ");
+		System.out.println("4. Exit ");
+	}
 }
