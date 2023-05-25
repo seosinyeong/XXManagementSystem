@@ -1,33 +1,38 @@
 package martMangement;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import Stocks.CuStock;
 import Stocks.Gs25ConvenienceStock;
 import Stocks.MiniStopConvenienceStock;
-import Stocks.Stock;
 import Stocks.StockInput;
 import Stocks.StockKind;
 
-public class StockManager {
+public class StockManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9108719193476608529L;
+	
 	ArrayList<StockInput> stocks=new ArrayList<StockInput>();
-	Scanner input;
+	transient Scanner input;
 	StockManager(Scanner input){
 		this.input=input;
 	}
 
 	public void addStocks() {
-		int kind=0;
 		StockInput stockInput;
+		int kind = 0;
 		while(kind<=1||kind>3) {
 			try {
 				System.out.print("1 for Cu ");
 				System.out.print("2 for Gs25 ");
 				System.out.print("3 for Ministop ");
-				System.out.print("Select num 1 , 2 or 3for Stock kind : ");
-				kind = input.nextInt();
+				System.out.print("Select num 1 , 2 or 3 for Stock kind :  ");
+				kind =input.nextInt();
 				if (kind == 1) {
 					stockInput= new CuStock(StockKind.Cu);
 					stocks.add(stockInput);
