@@ -1,10 +1,15 @@
 package Stocks;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import Exception.ItemFormatException;
 
-public abstract class Stock implements StockInput{
+public abstract class Stock implements StockInput,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2169479925015984021L;
 	protected StockKind kind = StockKind.Cu;
 	protected int id;
 	protected String item;
@@ -83,7 +88,7 @@ public abstract class Stock implements StockInput{
 	public abstract void printInfo(); 
 	
 	public void setStockID(Scanner input) {//
-		System.out.println("Stock ID:");
+		System.out.print("Stock ID:");
 		int id=input.nextInt();
 		this.setId(id);
 	}
@@ -91,7 +96,7 @@ public abstract class Stock implements StockInput{
 	public void setStockItem(Scanner input) {//
 		String item="";
 		while(!item.contains("#")) {
-			System.out.println("Stock Item:");
+			System.out.print("Stock Item:");
 			item=input.next();	
 			try{
 				this.setItem(item);
@@ -104,7 +109,7 @@ public abstract class Stock implements StockInput{
 	}
 	
 	public void setStockName(Scanner input) {
-		System.out.println("Stock Name:");
+		System.out.print("Stock Name:");
 		String name=input.next();				
 		this.setName(name);
 	}

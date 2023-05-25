@@ -18,7 +18,7 @@ public class CuStock extends Stock {
 	}
 	public void printInfo() {
 		String skind =getKindString();
-		System.out.println("kind: "+skind+"company's id"+id+"company's item:"+item+"name:"+name);
+		System.out.println("kind: "+skind+" company's id: "+id+" company's item: "+item+" name: "+name);
 	}
 	
 }

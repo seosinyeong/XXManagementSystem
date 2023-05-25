@@ -6,3 +6,4 @@ public enum StockKind {
 	Gs25,
 	MiniStop;
 }
+	
