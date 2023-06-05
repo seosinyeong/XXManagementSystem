@@ -31,7 +31,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-package gui2;
+package gui;
 
 import javax.swing.*;
 import javax.swing.SpringLayout;
