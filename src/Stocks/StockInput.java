@@ -8,8 +8,11 @@ import Exception.ItemFormatException;
 public interface StockInput {
 	
 	public int getId();
+	
 	public void setId(int id);
+	public String getItem();
 	public void setName(String name);
+	public String getName();
 	public void setItem(String item) throws ItemFormatException;
 	public void getUserInput(Scanner input);
 	
