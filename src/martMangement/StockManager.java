@@ -8,6 +8,7 @@ import java.util.Scanner;
 import Stocks.CuStock;
 import Stocks.Gs25ConvenienceStock;
 import Stocks.MiniStopConvenienceStock;
+import Stocks.Stock;
 import Stocks.StockInput;
 import Stocks.StockKind;
 
@@ -146,5 +147,13 @@ public class StockManager implements Serializable{
 		System.out.println("2. Edit Item: ");
 		System.out.println("3. Edit name: ");
 		System.out.println("4. Exit ");
+	}
+
+	public int size() {
+		return stocks.size();
+	}
+	
+	public StockInput get(int index) {
+		return (Stock) stocks.get(index);
 	}
 }

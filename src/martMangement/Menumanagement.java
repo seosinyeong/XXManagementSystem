@@ -9,6 +9,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import gui.WindowFrame;
 import log.EventLogger;
 
 
@@ -25,6 +26,9 @@ public class Menumanagement {
 		if(stockmanager==null) {
 			stockmanager =new StockManager(input);
 		}
+		
+		
+		WindowFrame frame = new WindowFrame(stockmanager);
 
 		selectMenu(input,stockmanager);
 		
