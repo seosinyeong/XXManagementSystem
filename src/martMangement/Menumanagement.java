@@ -29,9 +29,7 @@ public class Menumanagement {
 		
 		
 		WindowFrame frame = new WindowFrame(stockmanager);
-
 		selectMenu(input,stockmanager);
-		
 		putObject(stockmanager,"stockmanager.ser");
 	}
 		
@@ -44,17 +42,17 @@ public class Menumanagement {
 				num=input.nextInt();
 				switch(num) {
 				case 1:				
-					stockmanager.addStocks();
+					stockmanager.addStock();
 					logger.log("add a stock");
 					break;
 
 				case 2:
-					stockmanager.deleteStocks();
+					stockmanager.deleteStock();
 					logger.log("delete a stock");
 					break;
 
 				case 3:
-					stockmanager.editStocks();
+					stockmanager.editStock();
 					logger.log("edit a stock");
 					break;
 
@@ -123,7 +121,6 @@ public class Menumanagement {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
